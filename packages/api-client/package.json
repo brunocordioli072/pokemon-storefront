@@ -1,0 +1,17 @@
+{
+  "name": "pokeapi-js",
+  "version": "1.0.0",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "gen": "genql --endpoint https://beta.pokeapi.co/graphql/v1beta --output ./lib"
+  },
+  "devDependencies": {
+    "@genql/cli": "^2.6.0"
+  },
+  "dependencies": {
+    "@genql/runtime": "^2.6.0",
+    "graphql": "^15.6.1"
+  }
+}
