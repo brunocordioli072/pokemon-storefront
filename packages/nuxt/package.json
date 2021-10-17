@@ -26,6 +26,7 @@
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-vue": "^7.18.0"
+    "eslint-plugin-vue": "^7.18.0",
+    "fse": "^4.0.1"
   }
 }
