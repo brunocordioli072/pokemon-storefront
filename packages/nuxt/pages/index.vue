@@ -4,7 +4,7 @@ import {
   defineComponent, useRoute, watch,
 } from '@nuxtjs/composition-api';
 import PokemonList from '@/components/PokemonList.vue';
-import { usePokemonPaginated } from '~/composables/usePokemonPaginated';
+import { usePokemon } from '~/composables/usePokemon';
 
 export default defineComponent({
   components: {
@@ -13,7 +13,7 @@ export default defineComponent({
   setup() {
     const {
       pokemons, pagination, loading, load,
-    } = usePokemonPaginated();
+    } = usePokemon();
     const route = useRoute();
     const query = computed(
       () => (route.value.query as unknown) as { page: number },

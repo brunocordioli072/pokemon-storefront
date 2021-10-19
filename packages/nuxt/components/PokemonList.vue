@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@nuxtjs/composition-api';
 import { SfLoader, SfProductCard, SfPagination } from '@storefront-ui/vue';
-import { Pokemon } from '@/composables/usePokemonPaginated';
+import { Pokemon } from '~/composables/usePokemon';
 
 export default defineComponent({
   components: {

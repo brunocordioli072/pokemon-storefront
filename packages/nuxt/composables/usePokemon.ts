@@ -14,7 +14,7 @@ export interface Pagination {
   pageOptions: number[];
 }
 
-export const usePokemonPaginated = () => {
+export const usePokemon = () => {
   const state = reactive({
     pokemons: (null as unknown) as Pokemon[],
     pagination: (null as unknown) as Pagination,
