@@ -1,8 +1,8 @@
 <script lang="ts">
-import { defineComponent } from '@nuxtjs/composition-api';
+import { defineComponent, ref } from '@nuxtjs/composition-api';
 import { SfSidebar, SfSearchBar } from '@storefront-ui/vue';
 import debounce from 'lodash.debounce';
-import { useUiState } from '@/composables/useUiState';
+import { useUiState } from '~/composables/useUiState';
 import PokemonList from '@/components/PokemonList.vue';
 import { usePokemonPaginated } from '@/composables/usePokemonPaginated';
 
@@ -17,13 +17,14 @@ export default defineComponent({
       pokemons, pagination, loading, load,
     } = usePokemonPaginated();
     const { toggleSearchSidebar, isSearchSidebarOpen } = useUiState();
+    const term = ref('');
 
     const handleSearch = debounce(async (paramValue: any) => {
-      const search = !paramValue.target ? paramValue : paramValue.target.value;
+      term.value = !paramValue.target ? paramValue : paramValue.target.value;
 
       await load({
         ...pagination.value,
-      }, search);
+      }, term.value);
     }, 1000);
 
     return {
