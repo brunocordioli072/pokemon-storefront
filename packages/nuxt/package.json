@@ -12,7 +12,9 @@
     "@nuxtjs/composition-api": "^0.29.3",
     "@storefront-ui/nuxt": "^0.10.8",
     "@storefront-ui/vue": "^0.11.0",
+    "@types/lodash.debounce": "^4.0.6",
     "core-js": "^3.15.1",
+    "lodash.debounce": "^4.0.8",
     "nuxt": "^2.15.7",
     "pokeapi-js": "link:../api-client",
     "vue": "^2.6.14"
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
+    "@types/lodash.debounce": "^4.0.6",
     "@types/storefront-ui__vue": "^0.7.1",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",

@@ -1,0 +1,63 @@
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api';
+import { SfSidebar, SfSearchBar } from '@storefront-ui/vue';
+import debounce from 'lodash.debounce';
+import { useUiState } from '@/composables/useUiState';
+import PokemonList from '@/components/PokemonList.vue';
+import { usePokemonPaginated } from '@/composables/usePokemonPaginated';
+
+export default defineComponent({
+  components: {
+    SfSidebar,
+    SfSearchBar,
+    PokemonList,
+  },
+  setup() {
+    const {
+      pokemons, pagination, loading, load,
+    } = usePokemonPaginated();
+    const { toggleSearchSidebar, isSearchSidebarOpen } = useUiState();
+
+    const handleSearch = debounce(async (paramValue: any) => {
+      const search = !paramValue.target ? paramValue : paramValue.target.value;
+
+      await load({
+        ...pagination.value,
+      }, search);
+    }, 1000);
+
+    return {
+      isSearchSidebarOpen,
+      toggleSearchSidebar,
+      handleSearch,
+      pokemons,
+      pagination,
+      loading,
+    };
+  },
+});
+</script>
+<template>
+  <SfSidebar
+    :visible="isSearchSidebarOpen"
+    :button="false"
+    title="Search"
+    style="backgroud-color: red"
+    class="sidebar sf-sidebar--left"
+    @close="toggleSearchSidebar"
+  >
+    <SfSearchBar
+      placeholder="Search pokemons"
+      aria-label="Search"
+      class="sf-search-bar"
+      :value="term"
+      @input="handleSearch"
+      @keydown.enter="handleSearch($event)"
+      @keydown.esc="toggleSearchSidebar"
+    />
+    <PokemonList
+      :pokemons="pokemons"
+      :loading="loading"
+    />
+  </SfSidebar>
+</template>
