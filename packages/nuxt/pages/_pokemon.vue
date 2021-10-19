@@ -5,7 +5,9 @@ import {
   onBeforeMount,
   useRoute,
 } from '@nuxtjs/composition-api';
-import { SfImage, SfLoader, SfBadge } from '@storefront-ui/vue';
+import {
+  SfImage, SfLoader, SfBadge, SfIcon, SfLink,
+} from '@storefront-ui/vue';
 import { usePokemon } from '@/composables/usePokemon';
 
 export default defineComponent({
@@ -13,6 +15,8 @@ export default defineComponent({
     SfImage,
     SfLoader,
     SfBadge,
+    SfIcon,
+    SfLink,
   },
   setup() {
     const { load, pokemon, loading } = usePokemon();
@@ -39,13 +43,21 @@ export default defineComponent({
       <div class="product">
         <div class="product__wrapper">
           <div class="product__background">
-            <SfImage
-              :src="pokemon.image_artwork"
-              :width="250"
-              :height="250"
-              alt="pokemon"
-              class="sf-header__logo"
-            />
+            <SfLink link="/">
+              <SfIcon
+                icon="arrow_left"
+                size="lg"
+              />
+            </SfLink>
+            <div class="product__image">
+              <SfImage
+                :src="pokemon.image_artwork"
+                :width="250"
+                :height="250"
+                alt="pokemon"
+                class="sf-header__logo"
+              />
+            </div>
           </div>
           <div class="product__description">
             <h1>
@@ -72,23 +84,27 @@ export default defineComponent({
 <style lang="scss" scoped>
 .product {
   border-style: solid;
-  border-radius: 20px;
-  &__wrapper,
-  &__background {
-    border-radius: 20px;
-  }
+  border-radius: 23px;
   &__wrapper {
+    border-radius: 20px;
     background-color: white;
     height: 600px;
   }
   &__background {
+    background-color: #ffcb05;
+    border-radius: 20px 20px 0 0;
+    padding: 10px;
+  }
+  &__back {
+    margin-top: 10px;
+  }
+  &__image {
+    width: 100%;
+    height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 100%;
-    height: 400px;
-    background-color: #ffcb05;
   }
   &__description {
     position: relative;
@@ -108,7 +124,7 @@ export default defineComponent({
     justify-content: center;
     align-items: center;
     &__badge {
-        margin: 2px
+      margin: 2px;
     }
   }
 }
