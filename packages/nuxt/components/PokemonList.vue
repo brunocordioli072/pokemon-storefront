@@ -1,7 +1,8 @@
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api';
+import { defineComponent, PropType, useRouter } from '@nuxtjs/composition-api';
 import { SfLoader, SfProductCard, SfPagination } from '@storefront-ui/vue';
-import { Pokemon } from '~/composables/usePokemon';
+import { Pokemon } from '@/composables/usePokemonList';
+import { useUiState } from '@/composables/useUiState';
 
 export default defineComponent({
   components: {
@@ -22,6 +23,17 @@ export default defineComponent({
       type: Boolean,
       default: () => false,
     },
+  },
+  setup() {
+    const { isSearchSidebarOpen, toggleSearchSidebar } = useUiState();
+    const router = useRouter();
+    const handleClick = (pokemon: Pokemon) => {
+      if (isSearchSidebarOpen) toggleSearchSidebar();
+      router.push(`/${pokemon.id}`);
+    };
+    return {
+      handleClick,
+    };
   },
 });
 </script>
@@ -52,7 +64,7 @@ export default defineComponent({
             :image="pokemon.image_default"
             wishlist-icon=""
             is-on-wishlist-icon=""
-            @click="$router.push(`/p/${pokemon.id}`)"
+            @click="handleClick(pokemon)"
           />
         </transition-group>
         <SfPagination

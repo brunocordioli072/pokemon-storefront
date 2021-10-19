@@ -4,7 +4,7 @@ import { SfSidebar, SfSearchBar } from '@storefront-ui/vue';
 import debounce from 'lodash.debounce';
 import { useUiState } from '~/composables/useUiState';
 import PokemonList from '@/components/PokemonList.vue';
-import { usePokemon } from '~/composables/usePokemon';
+import { usePokemonList } from '~/composables/usePokemonList';
 
 export default defineComponent({
   components: {
@@ -15,7 +15,7 @@ export default defineComponent({
   setup() {
     const {
       pokemons, pagination, loading, load,
-    } = usePokemon();
+    } = usePokemonList();
     const { toggleSearchSidebar, isSearchSidebarOpen } = useUiState();
     const term = ref('');
 

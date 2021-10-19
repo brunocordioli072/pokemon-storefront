@@ -28,6 +28,9 @@ export default defineComponent({
 html {
   background-color: #dc0a2d;
 }
+body {
+  margin: 0;
+}
 
 .app {
   box-sizing: border-box;
