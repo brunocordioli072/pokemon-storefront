@@ -28,7 +28,7 @@ export default defineComponent({
     const { isSearchSidebarOpen, toggleSearchSidebar } = useUiState();
     const router = useRouter();
     const handleClick = (pokemon: Pokemon) => {
-      if (isSearchSidebarOpen) toggleSearchSidebar();
+      if (isSearchSidebarOpen.value) toggleSearchSidebar();
       router.push(`/${pokemon.id}`);
     };
     return {
