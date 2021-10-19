@@ -4,16 +4,16 @@ import { createClient } from 'pokeapi-js';
 import { Pokemon, capitalizeWord, calculatePokemonPrice } from './helpers';
 
 export interface Pagination {
-  totalPages: number;
-  currentPage: number;
-  itemsPerPage: number;
-  pageOptions: number[];
+  totalPages?: number;
+  currentPage?: number;
+  itemsPerPage?: number;
+  pageOptions?: number[];
 }
 
 export const usePokemonList = () => {
   const state = reactive({
     pokemons: (null as unknown) as Pokemon[],
-    pagination: (null as unknown) as Pagination,
+    pagination: (null as unknown) as Pagination | undefined | null,
     loading: false,
     error: {
       load: null as any,
@@ -40,7 +40,7 @@ export const usePokemonList = () => {
     return pagination;
   };
 
-  const load = async (pagination: Pagination, search?: string) => {
+  const load = async (pagination: Pagination | undefined | null, search?: string) => {
     try {
       state.loading = true;
       state.pagination = pagination;
@@ -50,8 +50,10 @@ export const usePokemonList = () => {
             ? { generation_id: { _eq: 1 }, name: { _iregex: search } }
             : { generation_id: { _eq: 1 } },
           order_by: { id: 'asc' } as any,
-          limit: state.pagination.itemsPerPage,
-          offset: state.pagination.currentPage * state.pagination.itemsPerPage,
+          limit: state.pagination ? state.pagination.itemsPerPage : null,
+          offset: state.pagination && state.pagination.currentPage && state.pagination.itemsPerPage
+            ? state.pagination?.currentPage * state.pagination?.itemsPerPage
+            : null,
         })
         .get({
           name: true,
@@ -84,7 +86,7 @@ export const usePokemonList = () => {
 
   return {
     load,
-    pagination: computed(() => state.pagination as Pagination),
+    pagination: computed(() => state.pagination as Pagination | undefined | null),
     pokemons: computed(() => state.pokemons as Pokemon[]),
     loading: computed(() => state.loading),
     error: computed(() => state.error),

@@ -22,9 +22,7 @@ export default defineComponent({
     const handleSearch = debounce(async (paramValue: any) => {
       term.value = !paramValue.target ? paramValue : paramValue.target.value;
 
-      await load({
-        ...pagination.value,
-      }, term.value);
+      await load(null, term.value);
     }, 1000);
 
     return {
