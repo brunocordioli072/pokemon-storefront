@@ -1,10 +1,10 @@
 /* eslint-disable camelcase */
-import { pokemon_v2_pokemonspecies } from 'pokeapi-js';
+import { pokemon_v2_pokemonspecies, pokemon_v2_type } from 'pokeapi-js';
 
 export interface Pokemon extends pokemon_v2_pokemonspecies {
   image_default?: string;
   image_artwork?: string;
-  types?: any[];
+  types?: pokemon_v2_type[];
   price?: number;
 }
 

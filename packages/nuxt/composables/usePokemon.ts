@@ -47,7 +47,6 @@ export const usePokemon = () => {
       };
       error.value.load = null;
     } catch (err) {
-        console.log(err)
       error.value.load = err;
     } finally {
       loading.value = false;

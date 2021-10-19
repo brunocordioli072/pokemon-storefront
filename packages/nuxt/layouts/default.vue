@@ -3,7 +3,6 @@ import { defineComponent } from '@nuxtjs/composition-api';
 import AppHeader from '@/components/AppHeader.vue';
 import SearchSidebar from '@/components/SearchSidebar.vue';
 
-
 export default defineComponent({
   components: {
     AppHeader,

@@ -1,6 +1,8 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import { SfButton, SfImage, SfIcon, SfLink } from '@storefront-ui/vue';
+import {
+  SfButton, SfImage, SfIcon, SfLink,
+} from '@storefront-ui/vue';
 import { useUiState } from '@/composables/useUiState';
 
 export default defineComponent({
@@ -8,7 +10,7 @@ export default defineComponent({
     SfButton,
     SfImage,
     SfIcon,
-    SfLink
+    SfLink,
   },
   setup() {
     const { toggleSearchSidebar } = useUiState();
