@@ -2,9 +2,7 @@
 import {
   computed,
   defineComponent,
-  ref,
   useRoute,
-  useStore,
   watch,
 } from '@nuxtjs/composition-api';
 import PokemonList from '@/components/PokemonList.vue';

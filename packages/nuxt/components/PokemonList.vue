@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, PropType, useRouter } from '@nuxtjs/composition-api';
 import { SfLoader, SfProductCard, SfPagination } from '@storefront-ui/vue';
-import { Pokemon } from '@/composables/helpers';
+import { Pokemon, Pagination } from '@/composables/helpers';
 import { useUiState } from '@/composables/useUiState';
 
 export default defineComponent({
@@ -16,7 +16,7 @@ export default defineComponent({
       default: () => [],
     },
     pagination: {
-      type: Object,
+      type: Object as PropType<Pagination | null | undefined>,
       default: () => null,
     },
     loading: {
@@ -24,7 +24,8 @@ export default defineComponent({
       default: () => false,
     },
   },
-  setup() {
+  setup(props) {
+    console.log(props)
     const { isSearchSidebarOpen, toggleSearchSidebar } = useUiState();
     const router = useRouter();
     const handleClick = (pokemon: Pokemon) => {
@@ -67,14 +68,15 @@ export default defineComponent({
             @click="handleClick(pokemon)"
           />
         </transition-group>
-        <SfPagination
-          v-if="!loading && pagination"
-          v-show="pagination.totalPages > 1"
-          class="products__pagination"
-          :current="pagination.currentPage"
-          :total="pagination.totalPages"
-          :visible="5"
-        />
+        <div v-if="!loading && pagination && pagination.totalPages">
+          <SfPagination
+            v-show="pagination.totalPages > 1"
+            class="products__pagination"
+            :current="pagination.currentPage"
+            :total="pagination.totalPages"
+            :visible="5"
+          />
+        </div>
       </div>
     </SfLoader>
   </div>

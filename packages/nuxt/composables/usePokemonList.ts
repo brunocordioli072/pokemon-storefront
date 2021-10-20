@@ -1,14 +1,13 @@
 /* eslint-disable camelcase */
 import { computed, reactive } from '@nuxtjs/composition-api';
 import { createClient } from 'pokeapi-js';
-import { Pokemon, capitalizeWord, calculatePokemonPrice } from './helpers';
-
-export interface Pagination {
-  totalPages?: number;
-  currentPage?: number;
-  itemsPerPage?: number;
-  pageOptions?: number[];
-}
+import {
+  Pokemon,
+  capitalizeWord,
+  calculatePokemonPrice,
+  getPagination,
+  Pagination,
+} from './helpers';
 
 export const usePokemonList = () => {
   const state = reactive({
@@ -22,25 +21,10 @@ export const usePokemonList = () => {
 
   const client = createClient();
 
-  const getPagination = () => {
-    // number of pokemons in first generation = 151
-    const maxPokemons = 151;
-    const itemsPerPage = 20;
-    const totalPages = Math.ceil(maxPokemons / itemsPerPage);
-    const pageOptions = [];
-    for (let i = 0; i < totalPages; i++) {
-      pageOptions.push(i);
-    }
-    const pagination: Pagination = {
-      itemsPerPage,
-      totalPages,
-      currentPage: 0,
-      pageOptions,
-    };
-    return pagination;
-  };
-
-  const load = async (pagination: Pagination | undefined | null, search?: string) => {
+  const load = async (
+    pagination: Pagination | undefined | null,
+    search?: string,
+  ) => {
     try {
       state.loading = true;
       state.pagination = pagination;
@@ -51,9 +35,12 @@ export const usePokemonList = () => {
             : { generation_id: { _eq: 1 } },
           order_by: { id: 'asc' } as any,
           limit: state.pagination ? state.pagination.itemsPerPage : null,
-          offset: state.pagination && state.pagination.currentPage && state.pagination.itemsPerPage
-            ? state.pagination?.currentPage * state.pagination?.itemsPerPage
-            : null,
+          offset:
+            state.pagination
+            && state.pagination.currentPage
+            && state.pagination.itemsPerPage
+              ? state.pagination?.currentPage * state.pagination?.itemsPerPage
+              : null,
         })
         .get({
           name: true,
@@ -86,7 +73,9 @@ export const usePokemonList = () => {
 
   return {
     load,
-    pagination: computed(() => state.pagination as Pagination | undefined | null),
+    pagination: computed(
+      () => state.pagination as Pagination | undefined | null,
+    ),
     pokemons: computed(() => state.pokemons as Pokemon[]),
     loading: computed(() => state.loading),
     error: computed(() => state.error),

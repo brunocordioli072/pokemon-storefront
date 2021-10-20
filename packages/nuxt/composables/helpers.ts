@@ -8,6 +8,31 @@ export interface Pokemon extends pokemon_v2_pokemonspecies {
   price?: number;
 }
 
+export interface Pagination {
+  totalPages?: number;
+  currentPage?: number;
+  itemsPerPage?: number;
+  pageOptions?: number[];
+}
+
+export const getPagination = () => {
+  // number of pokemons in first generation = 151
+  const maxPokemons = 151;
+  const itemsPerPage = 20;
+  const totalPages = Math.ceil(maxPokemons / itemsPerPage);
+  const pageOptions = [];
+  for (let i = 0; i < totalPages; i++) {
+    pageOptions.push(i);
+  }
+  const pagination: Pagination = {
+    itemsPerPage,
+    totalPages,
+    currentPage: 0,
+    pageOptions,
+  };
+  return pagination;
+};
+
 export const capitalizeWord = ([first, ...rest]: string) => first.toUpperCase() + rest.join('');
 
 export const calculatePokemonPrice = (pokemon: Pokemon) => {
