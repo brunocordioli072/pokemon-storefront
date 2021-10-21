@@ -1,5 +1,23 @@
 {
-  "name": "root",
+  "name": "pokemon-storefront",
+  "version": "1.0.0",
+  "description": "A store that display all the available Pokemons from first generation.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:brunocordioli072/pokemon-storefront.git"
+  },
+  "keywords": [
+    "pokeapi",
+    "nuxt"
+  ],
+  "author": {
+    "name": "Bruno Cordioli",
+    "email": "brunocordioli072@gmail.com"
+  },
+  "scripts": {
+    "dev:nuxt": "cd packages/nuxt && yarn dev",
+    "gen:api-client": "cd packages/api-client && yarn gen"
+  },
   "private": true,
   "useWorkspaces": true,
   "devDependencies": {
