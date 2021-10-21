@@ -1,6 +1,6 @@
 # pokemon-storefront
 
-Pokemon-storefront is a store that display all the available Pokemons from first generation.
+Pokemon-storefront is a store that displays all the available Pokemons from first generation.
 
 ## Installation
 
