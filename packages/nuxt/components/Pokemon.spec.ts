@@ -28,7 +28,7 @@ describe('Pokemon.vue', () => {
     expect(wrapper.find('.product').exists()).toBe(true);
   });
 
-  test('should render pokemon iamge, name and types', async () => {
+  test('should render pokemon image, name and types', async () => {
     const localVue = createLocalVue();
     localVue.use(VueRouter);
     const router = new VueRouter();
