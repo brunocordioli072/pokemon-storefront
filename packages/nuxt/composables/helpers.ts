@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { pokemon_v2_pokemonspecies, pokemon_v2_type } from 'pokeapi-js';
+import { pokemon_v2_pokemonspecies, pokemon_v2_type } from 'pokemonapi-js';
 
 export interface Pokemon extends pokemon_v2_pokemonspecies {
   image_default?: string;

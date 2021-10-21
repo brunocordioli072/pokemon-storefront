@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { computed, reactive } from '@nuxtjs/composition-api';
-import { createClient } from 'pokeapi-js';
+import { createClient } from 'pokemonapi-js';
 import {
   Pokemon,
   capitalizeWord,

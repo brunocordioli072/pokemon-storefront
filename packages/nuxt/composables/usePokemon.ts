@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import { computed, ref } from '@nuxtjs/composition-api';
-import { createClient } from 'pokeapi-js';
+import { createClient } from 'pokemonapi-js';
 import { calculatePokemonPrice, Pokemon, capitalizeWord } from './helpers';
 
 export const usePokemon = () => {

@@ -24,8 +24,7 @@ export default defineComponent({
       default: () => false,
     },
   },
-  setup(props) {
-    console.log(props)
+  setup() {
     const { isSearchSidebarOpen, toggleSearchSidebar } = useUiState();
     const router = useRouter();
     const handleClick = (pokemon: Pokemon) => {
