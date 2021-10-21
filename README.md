@@ -17,6 +17,12 @@ lerna bootstrap
 yarn dev:nuxt
 ```
 
+## Run tests
+
+```
+yarn test:nuxt
+```
+
 ## Tools used
 
 [Nuxt 2][nuxt] - Vue Framework.\

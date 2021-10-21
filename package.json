@@ -16,7 +16,8 @@
   },
   "scripts": {
     "dev:nuxt": "cd packages/nuxt && yarn dev",
-    "gen:api-client": "cd packages/api-client && yarn gen"
+    "gen:api-client": "cd packages/api-client && yarn gen",
+    "test:nuxt": "cd packages/nuxt && yarn test"
   },
   "private": true,
   "useWorkspaces": true,
