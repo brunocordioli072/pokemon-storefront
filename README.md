@@ -19,9 +19,9 @@ yarn dev:nuxt
 
 ## Tools used
 
-[Nuxt 2][nuxt] - Vue Framework.
-[Storefront-ui][storefrontui] - UI framework.
-[Jest][jest] - Testing Framework.
+[Nuxt 2][nuxt] - Vue Framework.\
+[Storefront-ui][storefrontui] - UI framework.\
+[Jest][jest] - Testing Framework.\
 [Genql][genql] - Type safe Graphql Query Builder.
 
 ## :scroll: License
