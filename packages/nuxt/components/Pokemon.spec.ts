@@ -61,7 +61,7 @@ describe('Pokemon.vue', () => {
     expect(pokemonName.exists()).toBe(true);
     expect(pokemonTypes.exists()).toBe(true);
 
-    expect(pokemonImageProps.src).toBe('charmander.png');
+    expect(pokemonImageProps.src).toBe('http://imagesite.com/charmander.png');
     expect(pokemonName.text()).toBe('charmander');
     expect(pokemonTypes.length).toBe(2);
     goBack.trigger('click');

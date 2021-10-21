@@ -7,7 +7,7 @@ Pokemon-storefront is a store that display all the available Pokemons from first
 The library can be installed using the Npm package manager:
 
 ```
-npm i -g lerna 
+npm i -g lerna
 lerna bootstrap
 ```
 

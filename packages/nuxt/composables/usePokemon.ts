@@ -1,20 +1,22 @@
 /* eslint-disable camelcase */
-import { computed, ref } from '@nuxtjs/composition-api';
+import { computed, reactive } from '@nuxtjs/composition-api';
 import { createClient } from 'pokemonapi-js';
 import { calculatePokemonPrice, Pokemon, capitalizeWord } from './helpers';
 
 export const usePokemon = () => {
-  const pokemon = ref({} as unknown as Pokemon);
-  const loading = ref(true);
-  const error = ref({
-    load: null as any,
+  const state = reactive({
+    pokemon: {} as unknown as Pokemon,
+    loading: false,
+    error: {
+      load: null as any,
+    },
   });
 
   const client = createClient();
 
   const load = async (pokemonId: number) => {
     try {
-      loading.value = true;
+      state.loading = true;
       const [res] = await client.chain.query
         .pokemon_v2_pokemon({ where: { id: { _eq: pokemonId } } })
         .get({
@@ -37,7 +39,7 @@ export const usePokemon = () => {
             },
           },
         }) as any;
-      pokemon.value = {
+      state.pokemon = {
         ...res,
         price: calculatePokemonPrice(res.pokemon_v2_pokemonspecy),
         name: capitalizeWord(res.name),
@@ -45,18 +47,18 @@ export const usePokemon = () => {
         image_default: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${res.id}.png`,
         image_artwork: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
       };
-      error.value.load = null;
+      state.error.load = null;
     } catch (err) {
-      error.value.load = err;
+      state.error.load = err;
     } finally {
-      loading.value = false;
+      state.loading = false;
     }
   };
 
   return {
     load,
-    pokemon: computed(() => pokemon.value as Pokemon),
-    loading: computed(() => loading.value),
-    error: computed(() => error.value),
+    pokemon: computed(() => state.pokemon as Pokemon),
+    loading: computed(() => state.loading),
+    error: computed(() => state.error),
   };
 };
